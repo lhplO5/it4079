@@ -1,0 +1,1 @@
+gcc Week6/main.c Week6/scanner.c -o Week6/pl0.exe

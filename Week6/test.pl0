@@ -1,0 +1,21 @@
+const limit = 10;
+var x, y;
+
+procedure display;
+begin
+    write x
+end;
+
+begin
+    read x;
+    y := 0;
+
+    call display;
+
+    while y < limit do
+    begin
+        y := y + 1;
+        if odd y then
+            write y
+    end
+end.
