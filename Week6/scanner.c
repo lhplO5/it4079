@@ -12,7 +12,7 @@ char ch;
 
 TokenType checkKeyword(char * str){
 	int i;
-	//TODO
+	//TODO -> ok 
 	for (i = 0; i < KEYWORDS_COUNT; i++) {
         if (strcmp(str, keywords[i].string) == 0)
             return keywords[i].Token;
@@ -33,8 +33,15 @@ TokenType getToken(){
 		return TK_NONE; 
 	if( isalpha(ch)){		//bat dau la mot chu cai
 		//TODO
-		//............
+		i = 0; 
+		while (isalnum((unsigned char)ch)) {
+            if (i < MAX_IDENT_LEN)
+                Id[i++] = ch;
+            ch = getCh();
+        }
+		Id[i] = '\0';
 		return checkKeyword(Id);
+		
 	}else if( isdigit(ch)){  //bat dau la mot chu so
 		//TODO
 		//............
