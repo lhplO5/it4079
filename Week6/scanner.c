@@ -31,12 +31,14 @@ int getCh() {
 TokenType getToken(){
 	int i;
 	int c; 
+
+	//q_0 -> q_0
 	// loop skip white space 
 	while (ch != EOF && isspace((unsigned char)ch)) ch = getCh(); //dau phan cach
 	if (ch == EOF)
 		return TK_NONE; 
+	// q_0 -letter> q_1 - letter/number ->q1
 	if( isalpha(ch)){		//bat dau la mot chu cai
-		//TODO-> ok 
 		i = 0; 
 		while (isalnum((unsigned char)ch)) {
             if (i < MAX_IDENT_LEN)
@@ -46,7 +48,10 @@ TokenType getToken(){
 		Id[i] = '\0';
 		return checkKeyword(Id);
 
-	}else if( isdigit(ch)){  //bat dau la mot chu so
+	}
+	// q_0 -number> q_2 - number ->q2
+
+	else if( isdigit(ch)){  //bat dau la mot chu so
 		//TODO
 		i = 0; 
 		Num = 0; 
@@ -59,7 +64,10 @@ TokenType getToken(){
 		if (i > MAX_NUMBER_LEN)
             printf("so qua lon, toi da %d chu so\n", MAX_NUMBER_LEN);
 		return TK_NUMBER;		//chu y canh bao: so qua lon
-	} else if (ch == ':') {   //doan nhan tu vung :=
+	}
+	// q_0 -':'> q_3 - '=' ->q4
+
+	 else if (ch == ':') {   //doan nhan tu vung :=
 		ch = getCh();
 		if(ch == '='){
 			ch = getCh();
@@ -67,6 +75,8 @@ TokenType getToken(){
 		}
 		return TK_NONE;
 	}else {
+			// q_0 - cac dau con lai -> q_....
+
         switch (ch) {
             case '+': ch = getCh(); return SB_PLUS;
             case '-': ch = getCh(); return SB_MINUS;
