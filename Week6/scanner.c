@@ -13,6 +13,10 @@ char ch;
 TokenType checkKeyword(char * str){
 	int i;
 	//TODO
+	for (i = 0; i < KEYWORDS_COUNT; i++) {
+        if (strcmp(str, keywords[i].string) == 0)
+            return keywords[i].Token;
+    }
 	return TK_IDENT;
 }
 
@@ -21,10 +25,12 @@ char getCh(){
 }
 
 TokenType getToken(){
-	//TODO
-
+	int i;
+	int c; 
+	// loop skip white space 
 	while((ch==' ') || ch=='\n' || (ch=='\t')) ch = getCh(); //dau phan cach
-
+	if (ch == EOF)
+		return TK_NONE; 
 	if( isalpha(ch)){		//bat dau la mot chu cai
 		//TODO
 		//............
